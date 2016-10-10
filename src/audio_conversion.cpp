@@ -1,8 +1,14 @@
 #include "audio_conversion.hpp"
 
-Audio audio_to_mono(const Audio & audio) {
-  return audio.get_channels().front();
-}
-
-Audio audio_to_stereo(const Audio & audio) {
+StereoAudio mono_to_stereo(const MonoAudio & mono_audio)
+{
+  std::vector<float> doubled_samples;
+  for (float sample : mono_audio.samples)
+  {
+    for (int i = 0; i < 2; i++)
+    {
+      doubled_samples.push_back(sample);
+    }
+  }
+  return StereoAudio(doubled_samples, mono_audio.frame_rate);
 }

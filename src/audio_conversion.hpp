@@ -2,5 +2,4 @@
 
 #include "audio.hpp"
 
-Audio audio_to_mono(const Audio & audio);
-Audio audio_to_stereo(const Audio & audio);
+StereoAudio mono_to_stereo(const MonoAudio & mono_audio);
