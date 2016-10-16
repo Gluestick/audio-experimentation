@@ -2,4 +2,6 @@
 
 #include "audio.hpp"
 
-StereoAudio mono_to_stereo(const MonoAudio & mono_audio);
+Audio mono_to_stereo(const Audio & audio);
+
+Audio convert_samplerate(const Audio & src_audio, uint32_t target_samplerate);

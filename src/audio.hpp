@@ -1,13 +1,14 @@
 #pragma once
 
-#include "abstract_audio.hpp"
+#include <vector>
 
-template <uint32_t T>
-class Audio : public AbstractAudio
+class Audio
 {
 public:
-  Audio(const std::vector<float> & samples, uint32_t frame_rate);
-};
+  Audio(const std::vector<float> & samples, uint32_t channels, uint32_t frame_rate);
+  uint32_t get_sample_rate() const;
 
-typedef Audio<1> MonoAudio;
-typedef Audio<2> StereoAudio;
+  const std::vector<float> samples;
+  const uint32_t channel_count;
+  const uint32_t frame_rate;
+};
