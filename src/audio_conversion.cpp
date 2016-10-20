@@ -1,4 +1,5 @@
 #include "audio_conversion.hpp"
+#include "audio_signal.hpp"
 #include "samplerate.h"
 
 Audio mono_to_stereo(const Audio & audio)
@@ -10,6 +11,7 @@ Audio mono_to_stereo(const Audio & audio)
   {
     doubled_samples.push_back(audio.samples[i / 2]);
   }
+  const std::vector<float> signal = doubled_samples;
   return Audio(doubled_samples, 2, audio.frame_rate);
 }
 
@@ -17,7 +19,7 @@ SRC_DATA create_src_data(const std::vector<float> & input, std::vector<float> & 
 {
   SRC_DATA data;
   data.data_in = const_cast<float *>(input.data());
-  data.data_out = static_cast<float *>(output.data());
+  data.data_out = const_cast<float *>(output.data());
   data.input_frames = input.size();
   data.output_frames = output.size();
   data.src_ratio = ratio;
