@@ -11,18 +11,12 @@ int main(int argc, char * argv[])
 {
   std::vector<float> samples(4096e3);
 
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
   Audio mono1(samples, 1, 22050);
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
   Audio mono_copy(mono1);
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
   Audio mono2 = convert_samplerate(mono1, 24000);
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
   Audio stereo = mono_to_stereo(mono2);
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
 
   Audio mono_sum = mix(sum_audio_signals, std::vector<Audio>{ mono1, mono_copy });
-  std::cout << "HEYOOOOOOOOOOOOOOOOOOOO" << std::endl;
 
   std::cout << inspect(mono1) << std::endl;
   std::cout << inspect(mono_copy) << std::endl;
