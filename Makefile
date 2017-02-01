@@ -1,9 +1,9 @@
 CC=clang++
-CFLAGS=--std=c++14 -m64 -g -O0 $(CDIAGNOSTIC_FLAGS)
-CDIAGNOSTIC_FLAGS=-Werror -Wall -Wextra -Wpedantic -pedantic-errors -Wno-unused-private-field -Wno-unused-parameter
+CFLAGS=--std=c++14 -m64 -g -O3 $(CDIAGNOSTIC_FLAGS)
+CDIAGNOSTIC_FLAGS=-Wall -Wextra -Wpedantic -pedantic-errors -Wno-unused-private-field -Wno-unused-parameter
 
 LD=clang++
-LDFLAGS=-lsamplerate
+LDFLAGS=-lsamplerate -lsndfile -lportaudio
 
 PROGRAM=bin/program
 SOURCES=$(wildcard src/*.cpp) $(wildcard src/**/*.cpp)

@@ -5,15 +5,17 @@ static Mixer mixer = sum_audio_signals;
 
 const AudioSignal sum_audio_signals(const std::vector<AudioSignal> & audio_signals)
 {
-  const AudioSignal & biggest_signal = *std::max_element(
-      audio_signals.begin(), audio_signals.end(),
-    [](const AudioSignal & lhs, const AudioSignal & rhs)
+  size_t max_size = 0;
+  for (const AudioSignal & signal : audio_signals)
+  {
+    if (signal.size() > max_size)
     {
-      return rhs.size() - lhs.size();
-    });
+      max_size = signal.size();
+    }
+  }
   AudioSignal summed_audio_signal;
-  summed_audio_signal.reserve(biggest_signal.size());
-  for (uint32_t result_index = 0; result_index < biggest_signal.size(); result_index++)
+  summed_audio_signal.reserve(max_size);
+  for (uint32_t result_index = 0; result_index < max_size; result_index++)
   {
     float summed_sample = 0.0f;
     for (const AudioSignal & source_signal : audio_signals)
